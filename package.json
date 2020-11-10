@@ -1,0 +1,19 @@
+{
+  "name": "cmpe180b-team-project",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/justinchrislee/cmpe180b-team-project.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/justinchrislee/cmpe180b-team-project/issues"
+  },
+  "homepage": "https://github.com/justinchrislee/cmpe180b-team-project#readme"
+}
