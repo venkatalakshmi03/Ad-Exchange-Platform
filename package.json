@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/justinchrislee/cmpe180b-team-project/issues"
   },
-  "homepage": "https://github.com/justinchrislee/cmpe180b-team-project#readme"
+  "homepage": "https://github.com/justinchrislee/cmpe180b-team-project#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
 }
