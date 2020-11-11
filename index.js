@@ -1,7 +1,8 @@
 const express = require('express');
 const mysql = require('mysql');
+const passport = require('passport');
+const LocalStrategy = require('passport-local').Strategy;
 const keys = require('./config/keys');
-require('./services/passport'); // include passport authentication strategy
 
 const app = express();
 
@@ -21,6 +22,24 @@ connection.connect(function(err) {
 
     console.log("Database connection successful!");
 });
+
+connection.query('SELECT * FROM users', function (error, results, fields) {
+    if (error) {
+        console.log("Query failed");
+        console.log(error);
+    } else {
+        console.log("Query successful");
+        console.log(results);
+    }
+});
+
+// passport local strategy
+passport.use(new LocalStrategy(
+  function(username, password, done) {
+    // go into mySql database and try to retrieve a user
+    return done(null, false, { message: 'Incorrect username.' });
+  }
+));
 
 require('./routes/authRoutes')(app); // authentication routes
 
