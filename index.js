@@ -1,12 +1,13 @@
 const express = require('express');
-const passport = require('passport');
-const LocalStrategy = require('passport-local').Strategy;
+require('./services/passport');
+
 const app = express();
 
-passport.use(new LocalStrategy(
-  function(username, password, done) {
-    return done(null, false, { message: 'Incorrect username.' });
-  }
-));
+require('./routes/authRoutes')(app);
+
+app.get('/random', (req, res) => {
+    res.send({ tenet: "no friends at dusk" });
+});
+
 
 app.listen(5000);
