@@ -23,21 +23,34 @@ connection.connect(function(err) {
     console.log("Database connection successful!");
 });
 
-connection.query('SELECT * FROM users', function (error, results, fields) {
-    if (error) {
-        console.log("Query failed");
-        console.log(error);
-    } else {
-        console.log("Query successful");
-        console.log(results);
-    }
+passport.serializeUser((user, done) => {
+    console.log(user);
+    // done(null, user.id);
 });
 
 // passport local strategy
 passport.use(new LocalStrategy(
   function(username, password, done) {
-    // go into mySql database and try to retrieve a user
-    return done(null, false, { message: 'Incorrect username.' });
+    /*
+    
+    connection.query('SELECT * FROM users WHERE username="user3" ', function (error, results, fields) {
+        if (error) {
+            console.log("Query failed");
+            return done(error);
+        } else {
+            console.log("Query successful");
+            if (results.length == 0) {
+                console.log("No user by that username");
+                return done(null, false);
+            } else {
+                console.log("Found user");
+                return done(null, result);
+            }
+        }
+    });
+
+
+    */
   }
 ));
 
