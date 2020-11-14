@@ -57,7 +57,7 @@ passport.use(new LocalStrategy(
 require('./routes/authRoutes')(app); // authentication routes
 
 app.get('/random', (req, res) => {
-    res.send({ tenet: "we live in a twilight zone, no friends at dusk" });
+    res.send({ tenet: "we live in a twilight world, no friends at dusk" });
 });
 
 
