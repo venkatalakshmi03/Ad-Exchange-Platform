@@ -1,5 +1,6 @@
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy
+const bcrypt = require('bcryptjs');
 
 module.exports = (connection) => {
     // after logging in via the local strategy below, takes unique attribute of user information, 
@@ -44,7 +45,16 @@ module.exports = (connection) => {
                     return done(null, false);
                 } else {
                     console.log("Found user");
-                    return done(null, results[0]); // send user information to serializeUser above
+                    
+                    // compare password with hashed password
+                    bcrypt.compare(req.body.password, results[0].password, function(err, res) {
+                        if (res) {
+                            return done(null, results[0]); // send user information to serializeUser above
+                        } 
+                        
+                        console.log("Incorrect password");
+                        return done(null, false);
+                    });
                 } 
             }
         }); 

@@ -28,11 +28,6 @@ class Login extends React.Component {
                       Password:
                       <input type="text" name="password" value={this.state.password} onChange={(e) => this.handleChange(e.target.value, 'password')} />
                     </label>
-                    <label for="user-type">Select User Type</label>
-                    <select name="user-type" id="user-type">
-                      <option value="Advertiser">Advertiser</option>
-                      <option value="Publisher">Publisher</option>
-                    </select>
                     <input type="submit" value="Submit" />
                 </form>
             </div>
