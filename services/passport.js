@@ -5,12 +5,12 @@ module.exports = (connection) => {
     // after logging in via the local strategy below, takes unique attribute of user information, 
     // generates token, and places token into cookie
     passport.serializeUser((user, done) => {
-        done(null, user.username);
+        done(null, user.email);
     });
 
     // whenever user accesses site, extracts token out of cookie and tries to translate it to a user
-    passport.deserializeUser((username, done) => {
-        connection.query('SELECT * FROM `users` WHERE `username` = ?', [username], function (error, results, fields) {
+    passport.deserializeUser((email, done) => {
+        connection.query('SELECT * FROM `users` WHERE `email` = ?', [email], function (error, results, fields) {
             if (error) {
                 console.log("Query failed");
                 return done(error);
@@ -34,7 +34,7 @@ module.exports = (connection) => {
         passReqToCallback: true
       },
       function(req, email, password, done) {
-        connection.query('SELECT * FROM `users` WHERE `username` = ?', [email], function (error, results, fields) {
+        connection.query('SELECT * FROM `users` WHERE `email` = ?', [email], function (error, results, fields) {
             if (error) {
                 console.log("Query failed");
                 return done(error);
