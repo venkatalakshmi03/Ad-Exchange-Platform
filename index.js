@@ -1,10 +1,28 @@
 const express = require('express');
 const mysql = require('mysql');
 const passport = require('passport');
-const LocalStrategy = require('passport-local').Strategy;
+const cookieSession = require('cookie-session');
+const bodyParser = require('body-parser');
 const keys = require('./config/keys');
 
 const app = express();
+
+// make use of cookies for authentication
+app.use(
+    cookieSession({
+        maxAge: 30 * 24 * 60 * 60 * 1000,
+        keys: [keys.cookieKey]
+    })
+);
+
+app.use(passport.initialize());
+app.use(passport.session());
+
+// Parsing form data and converting to JSON
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({
+    extended: false
+}));
 
 var connection = mysql.createConnection({
     host: 'localhost',
@@ -23,42 +41,14 @@ connection.connect(function(err) {
     console.log("Database connection successful!");
 });
 
-passport.serializeUser((user, done) => {
-    console.log(user);
-    // done(null, user.id);
-});
-
-// passport local strategy
-passport.use(new LocalStrategy(
-  function(username, password, done) {
-    /*
-    
-    connection.query('SELECT * FROM users WHERE username="user3" ', function (error, results, fields) {
-        if (error) {
-            console.log("Query failed");
-            return done(error);
-        } else {
-            console.log("Query successful");
-            if (results.length == 0) {
-                console.log("No user by that username");
-                return done(null, false);
-            } else {
-                console.log("Found user");
-                return done(null, result);
-            }
-        }
-    });
-
-
-    */
-  }
-));
+require('./services/passport')(connection); // include passport services
 
 require('./routes/authRoutes')(app); // authentication routes
+
+
 
 app.get('/random', (req, res) => {
     res.send({ tenet: "we live in a twilight world, no friends at dusk" });
 });
-
 
 app.listen(5000);
