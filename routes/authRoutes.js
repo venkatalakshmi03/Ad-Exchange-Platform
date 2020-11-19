@@ -1,7 +1,7 @@
 const passport = require('passport');
 
 module.exports = app => {
-    app.post('/login', (req, res) => {
+    app.post('/auth/login', (req, res) => {
         passport.authenticate('local', { successRedirect: '/', failureRedirect: '/' })(req, res);
     });
     
@@ -11,6 +11,6 @@ module.exports = app => {
     });
     
     app.get('/api/current_user', (req, res) => {
-        res.send({ current_user: req.user });
+        res.send(req.user);
     });
 };

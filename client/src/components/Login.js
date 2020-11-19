@@ -19,7 +19,7 @@ class Login extends React.Component {
         return (
             <div>
                 <h1>This is the login page!</h1>
-                <form action="/login" method="post">
+                <form action="/auth/login" method="post">
                     <label>
                       Email:
                       <input type="text" name="email" value={this.state.email} onChange={(e) => this.handleChange(e.target.value, 'email')} />
