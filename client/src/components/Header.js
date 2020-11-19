@@ -3,8 +3,8 @@ import React from 'react';
 class Header extends React.Component {
     render() {
         return (
-            <div>
-                <h2>Header</h2>
+            <div style={{ marginBottom: '5%'}}>
+                <h2>Real Time Bidding Simulation</h2>
             </div>
         );
     }

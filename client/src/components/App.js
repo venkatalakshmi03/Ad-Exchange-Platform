@@ -8,6 +8,7 @@ import Landing from './Landing';
 import Login from './Login';
 import AdvertiserSignUp from './AdvertiserSignUp';
 import PublisherSignUp from './PublisherSignUp';
+import BidOffer from './BidOffer';
 
 class App extends React.Component {
     componentDidMount() {
@@ -24,6 +25,7 @@ class App extends React.Component {
                         <Route path="/login" component={Login} />
                         <Route path="/adsignup" component={AdvertiserSignUp} />
                         <Route path="/pubsignup" component={PublisherSignUp} />
+                        <Route path="/bidoffer" component={BidOffer} />
                     </div>
                 </BrowserRouter>
             </div>

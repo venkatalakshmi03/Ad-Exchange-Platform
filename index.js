@@ -44,6 +44,7 @@ connection.connect(function(err) {
 require('./services/passport')(connection); // include passport services
 require('./routes/signUpRoutes')(app, connection); // sign up route
 require('./routes/authRoutes')(app); // authentication routes
+require('./routes/bidOffer')(app, connection); // bid offer route
 
 
 
